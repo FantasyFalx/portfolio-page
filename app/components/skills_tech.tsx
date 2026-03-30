@@ -90,14 +90,14 @@ function DataEngSkillIcon({
   alt: string;
   iconClassName?: string;
 }) {
-  const frameClass = `retro-frame h-14 w-14 shrink-0 object-contain p-1${iconClassName ? ` ${iconClassName}` : ""}`;
+  const frameClass = `retro-frame h-10 w-10 shrink-0 object-contain p-0.5${iconClassName ? ` ${iconClassName}` : ""}`;
   if (src.endsWith(".svg")) {
     return (
       <img
         src={src}
         alt={alt}
-        width={48}
-        height={48}
+        width={40}
+        height={40}
         className={frameClass}
       />
     );
@@ -119,9 +119,9 @@ function CloudSkillIcon({ src, alt }: { src: string; alt: string }) {
       <img
         src={src}
         alt=""
-        width={56}
-        height={56}
-        className="retro-frame h-14 w-14 shrink-0 object-contain p-1"
+        width={40}
+        height={40}
+        className="retro-frame h-10 w-10 shrink-0 object-contain p-0.5"
       />
     );
   }
@@ -132,7 +132,7 @@ function CloudSkillIcon({ src, alt }: { src: string; alt: string }) {
       width={SKILL_ICON_PX}
       height={SKILL_ICON_PX}
       unoptimized
-      className="retro-frame h-14 w-14 shrink-0 object-contain p-1"
+      className="retro-frame h-10 w-10 shrink-0 object-contain p-0.5"
     />
   );
 }
@@ -144,11 +144,11 @@ export default function SkillsTech() {
       label="Stack"
       title="Skills.sys"
       subtitle="Tools & languages — loaded at boot."
-      className="skills-sys-widget flex h-full min-h-0 w-full min-w-0 max-w-full flex-col"
-      bodyClassName="flex min-h-0 w-full flex-1 flex-col items-stretch overflow-hidden !pt-1 !pb-0"
+      className="skills-sys-widget flex h-auto min-h-0 w-full min-w-0 max-w-full shrink-0 flex-col"
+      bodyClassName="flex w-full flex-col items-stretch !pt-1 !pb-0"
     >
-      {/* grid-cols-1: subsections in one column; width follows main column */}
-      <div className="grid min-h-0 w-full min-w-0 flex-1 grid-cols-1 content-start gap-5 overflow-y-auto sm:gap-6">
+      {/* Content-sized body — no flex-1 stretch, no overflow scroll */}
+      <div className="grid w-full min-w-0 grid-cols-1 content-start gap-3 sm:gap-4">
         <section
           aria-labelledby="skills-cloud-heading"
           className="mt-2.5 flex w-full min-w-0 flex-col gap-1 sm:mt-3"
@@ -156,7 +156,7 @@ export default function SkillsTech() {
           <h3 id="skills-cloud-heading" className="retro-toolbar">
             Cloud Skills
           </h3>
-          <div className="retro-inset retro-inset--surface px-1 py-0.5">
+          <div className="retro-inset retro-inset--surface subsection-inset px-1 py-0.5">
             <ul className="m-0 grid w-full list-none grid-cols-2 gap-x-1 gap-y-1 p-0 sm:grid-cols-3 lg:grid-cols-4">
               {CLOUD_SKILLS.map((item) => (
                 <li
@@ -164,7 +164,7 @@ export default function SkillsTech() {
                   className="flex min-w-0 flex-col items-center gap-0.5 text-center"
                 >
                   <CloudSkillIcon src={item.src} alt={item.alt} />
-                  <span className="text-[0.8rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.85rem]">
+                  <span className="text-[0.72rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.78rem]">
                     {item.label}
                   </span>
                 </li>
@@ -183,7 +183,7 @@ export default function SkillsTech() {
           >
             Data Engineering and Analysis
           </h3>
-          <div className="retro-inset retro-inset--surface px-1 py-0.5">
+          <div className="retro-inset retro-inset--surface subsection-inset px-1 py-0.5">
             <ul className="m-0 grid w-full list-none grid-cols-2 gap-x-1 gap-y-1 p-0 sm:grid-cols-3 lg:grid-cols-4">
               {DATA_ENG_SKILLS.map((item) => (
                 <li
@@ -195,7 +195,7 @@ export default function SkillsTech() {
                     alt={item.alt}
                     iconClassName={item.iconClassName}
                   />
-                  <span className="text-[0.8rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.85rem]">
+                  <span className="text-[0.72rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.78rem]">
                     {item.label}
                   </span>
                 </li>
@@ -211,7 +211,7 @@ export default function SkillsTech() {
           <h3 id="skills-programming-heading" className="retro-toolbar">
             Programming
           </h3>
-          <div className="retro-inset retro-inset--surface px-1 py-0.5">
+          <div className="retro-inset retro-inset--surface subsection-inset px-1 py-0.5">
             <ul className="m-0 grid w-full list-none grid-cols-2 gap-x-1 gap-y-1 p-0 sm:grid-cols-3 lg:grid-cols-4">
               {PROGRAMMING_SKILLS.map((item) => (
                 <li
@@ -219,7 +219,7 @@ export default function SkillsTech() {
                   className="flex min-w-0 flex-col items-center gap-0.5 text-center"
                 >
                   <DataEngSkillIcon src={item.src} alt={item.alt} />
-                  <span className="text-[0.8rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.85rem]">
+                  <span className="text-[0.72rem] leading-tight text-[color:var(--retro-muted)] sm:text-[0.78rem]">
                     {item.label}
                   </span>
                 </li>

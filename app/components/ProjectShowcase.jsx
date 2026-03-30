@@ -409,10 +409,20 @@ export default function ProjectShowcase({ embedded = false }) {
   const activeProject = projects.find((p) => p.id === activeId) ?? projects[0];
 
   if (embedded) {
+    /** Self-sized box so parent does not need a fixed height (avoids clipping siblings). */
+    const embedBox = {
+      minHeight: "clamp(22rem, 52vh, 36rem)",
+      height: "clamp(22rem, 52vh, 36rem)",
+      maxHeight: "min(92vh, 36rem)",
+    };
+
     return (
-      <div className="project-showcase-embed h-full min-h-0 flex-1">
+      <div
+        className="project-showcase-embed flex w-full min-w-0 shrink-0 flex-col"
+        style={embedBox}
+      >
         <div
-          className="project-showcase-log-panel"
+          className="project-showcase-log-panel min-h-0 flex-1"
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 3fr",

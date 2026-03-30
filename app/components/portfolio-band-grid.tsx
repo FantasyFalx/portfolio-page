@@ -1,66 +1,22 @@
-"use client";
-
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React from "react";
 import AboutMe from "./about_me";
 import ProfileBar from "./profile_bar";
 import ProjsExp from "./projs_exp";
 import SkillsTech from "./skills_tech";
 import { StaggerItem } from "./stagger-item";
 
-const LG_MIN_PX = 1024;
-
 /**
- * Three-column band: measures Profile.bar (aside) height at lg+ and sets the
- * center and projects parents to that exact height. Children use h-full +
- * min-h-0 + internal scroll so they fill the band instead of growing the row.
+ * Three-column band: each column is content-sized (no shared fixed height),
+ * so About, Skills, and Projects are never clipped by a parent overflow.
  */
 export default function PortfolioBandGrid() {
-  const measureRef = useRef<HTMLElement>(null);
-  const [bandPx, setBandPx] = useState<number | undefined>(undefined);
-  const [isLg, setIsLg] = useState(false);
-
-  useLayoutEffect(() => {
-    const mq = window.matchMedia(`(min-width: ${LG_MIN_PX}px)`);
-    const sync = () => setIsLg(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  useLayoutEffect(() => {
-    const el = measureRef.current;
-    if (!isLg || !el) {
-      setBandPx(undefined);
-      return;
-    }
-    const update = () => setBandPx(el.getBoundingClientRect().height);
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    update();
-    return () => ro.disconnect();
-  }, [isLg]);
-
-  /** Fixed height + clip; scrolling happens inside each column’s children. */
-  const bandParentStyle: React.CSSProperties | undefined =
-    isLg && bandPx !== undefined
-      ? { height: bandPx, minHeight: 0, overflow: "hidden" }
-      : undefined;
-
   return (
-    <div
-      className="mx-auto grid min-h-0 w-full max-w-full min-w-0 grid-cols-1 gap-[1.171875rem] md:gap-[1.46484375rem] lg:w-full lg:grid-cols-[minmax(12.65rem,0.88fr)_minmax(0,2fr)_minmax(0,1.35fr)] lg:items-start"
-      style={
-        bandPx !== undefined && isLg
-          ? ({ "--profile-band-h": `${bandPx}px` } as React.CSSProperties)
-          : undefined
-      }
-    >
+    <div className="mx-auto grid min-h-0 w-full max-w-full min-w-0 grid-cols-1 gap-[0.625rem] md:gap-[0.75rem] lg:w-full lg:grid-cols-[minmax(9.75rem,0.76fr)_minmax(0,1.88fr)_minmax(0,1.15fr)] lg:gap-[0.75rem] lg:items-start">
       <StaggerItem
         index={1}
-        className="flex min-h-0 min-w-0 flex-col items-start"
+        className="flex min-h-0 min-w-0 flex-col items-start lg:min-h-0"
       >
         <aside
-          ref={measureRef}
           className="flex h-min min-h-0 w-full min-w-0 flex-col"
           aria-label="Profile"
         >
@@ -68,19 +24,16 @@ export default function PortfolioBandGrid() {
         </aside>
       </StaggerItem>
 
-      <main
-        className="grid min-h-0 min-w-0 grid-cols-1 gap-[1.171875rem] lg:grid-cols-2 lg:items-stretch lg:gap-[1.46484375rem] xl:gap-[1.7578125rem]"
-        style={bandParentStyle}
-      >
+      <main className="grid min-h-0 min-w-0 grid-cols-1 gap-[0.625rem] lg:grid-cols-2 lg:items-start lg:gap-[0.875rem] xl:gap-[1rem]">
         <StaggerItem
           index={2}
-          className="flex min-h-0 min-w-0 flex-col overflow-x-hidden lg:h-full lg:min-h-0 lg:overflow-hidden"
+          className="flex min-h-0 min-w-0 flex-col overflow-x-hidden lg:min-h-0 lg:w-full lg:self-start lg:overflow-visible"
         >
           <AboutMe />
         </StaggerItem>
         <StaggerItem
           index={3}
-          className="flex min-h-0 min-w-0 flex-col overflow-x-hidden lg:h-full lg:min-h-0 lg:overflow-hidden"
+          className="flex min-h-0 min-w-0 flex-col overflow-x-hidden lg:min-h-0 lg:w-full lg:self-start lg:overflow-visible"
         >
           <SkillsTech />
         </StaggerItem>
@@ -91,8 +44,7 @@ export default function PortfolioBandGrid() {
         className="flex min-h-0 min-w-0 max-w-full lg:min-h-0"
       >
         <aside
-          className="flex h-full min-h-0 w-full min-w-0 max-w-full flex-col overflow-x-hidden lg:min-h-0"
-          style={bandParentStyle}
+          className="flex min-h-0 w-full min-w-0 max-w-full flex-col overflow-x-hidden lg:overflow-visible"
           aria-label="Projects"
         >
           <ProjsExp />

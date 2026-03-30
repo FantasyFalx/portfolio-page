@@ -14,10 +14,10 @@ export default function AboutMe() {
       label="About"
       title="About_Me.doc"
       subtitle="Draft — not saved to floppy."
-      className="about-me-widget flex h-full min-h-0 w-full min-w-0 flex-col"
-      bodyClassName="flex min-h-0 flex-1 flex-col gap-0 overflow-hidden !pt-1 !pb-0"
+      className="about-me-widget flex h-auto min-h-0 w-full min-w-0 shrink-0 flex-col"
+      bodyClassName="flex w-full flex-col gap-0 !pt-1 !pb-0"
     >
-      <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto overscroll-contain sm:gap-6">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <section
           aria-labelledby="about-who-i-am-heading"
           className="mt-2.5 flex shrink-0 flex-col gap-1.5 sm:mt-3"
@@ -25,7 +25,7 @@ export default function AboutMe() {
           <h3 id="about-who-i-am-heading" className="retro-toolbar">
             Who I Am
           </h3>
-          <div className="retro-inset py-1.5 text-[1.08rem] leading-snug sm:text-[1.14rem] md:text-[1.18rem] lg:text-[1.22rem]">
+          <div className="retro-inset subsection-inset py-1.5 text-[0.98rem] leading-snug sm:text-[1.04rem] md:text-[1.08rem] lg:text-[1.12rem]">
             <p className="m-0">
               Data Engineer and Analyst with a passion for planning, architecting,
               creating, and deploying optimized data pipelines in the Google Cloud
@@ -42,8 +42,8 @@ export default function AboutMe() {
           <h3 id="about-current-role-heading" className="retro-toolbar">
             Current Role
           </h3>
-          <div className="retro-inset flex flex-col gap-2.5 p-2.5 text-[0.95rem] leading-snug sm:flex-row sm:items-start sm:gap-3 sm:text-[1rem] md:text-[1.06rem]">
-            <div className="retro-frame relative mx-auto h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden bg-white p-1 sm:mx-0 sm:h-[5rem] sm:w-[5rem]">
+          <div className="retro-inset subsection-inset flex flex-col gap-2 p-2 text-[0.88rem] leading-snug sm:flex-row sm:items-start sm:gap-2.5 sm:text-[0.94rem] md:text-[0.98rem]">
+            <div className="retro-frame relative mx-auto h-14 w-14 shrink-0 overflow-hidden bg-white p-0.5 sm:mx-0 sm:h-16 sm:w-16">
               <Image
                 src="/palomar-group-ai.png"
                 alt="Palomar Group Ai logo"

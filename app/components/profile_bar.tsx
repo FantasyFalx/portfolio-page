@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { RetroWidget } from "./retro-widget";
 
-const CONTACT_ICON = 56;
+const CONTACT_ICON = 44;
 
 export default function ProfileBar() {
   return (
@@ -23,7 +23,7 @@ export default function ProfileBar() {
         <h3 id="profile-bar-photo-heading" className="retro-toolbar">
           Photo · profile
         </h3>
-        <div className="flex w-full min-w-0 justify-center px-2 pb-3 pt-3 sm:px-2.5 sm:pb-4 sm:pt-3.5">
+        <div className="flex w-full min-w-0 justify-center px-2.5 pb-2 pt-2 sm:px-3 sm:pb-2.5 sm:pt-2.5">
           <div className="profile-photo-pixel-frame-outer">
             <div className="profile-photo-pixel-frame">
               <Image
@@ -52,7 +52,7 @@ export default function ProfileBar() {
         <p className="m-0 text-[0.72rem] leading-snug text-[color:var(--retro-muted)] sm:text-[0.76rem]">
           Tap an icon — mail, phone, GitHub, LinkedIn.
         </p>
-        <div className="retro-inset py-1">
+        <div className="retro-inset subsection-inset py-1">
           <div className="grid grid-cols-2 justify-items-center gap-x-0.5 gap-y-0.5 sm:grid-cols-4">
             <a
               href="mailto:cstim.murdoch@gmail.com"
@@ -65,7 +65,7 @@ export default function ProfileBar() {
                 width={512}
                 height={512}
                 unoptimized
-                className="h-14 w-14 object-contain [image-rendering:pixelated]"
+                className="h-12 w-12 object-contain [image-rendering:pixelated]"
               />
             </a>
             <a
@@ -79,7 +79,7 @@ export default function ProfileBar() {
                 width={CONTACT_ICON}
                 height={CONTACT_ICON}
                 unoptimized
-                className="h-14 w-14 object-contain [image-rendering:pixelated]"
+                className="h-12 w-12 object-contain [image-rendering:pixelated]"
               />
             </a>
             <a
@@ -95,7 +95,7 @@ export default function ProfileBar() {
                 width={CONTACT_ICON}
                 height={CONTACT_ICON}
                 unoptimized
-                className="h-14 w-14 object-contain [image-rendering:pixelated]"
+                className="h-12 w-12 object-contain [image-rendering:pixelated]"
               />
             </a>
             <a
@@ -111,7 +111,7 @@ export default function ProfileBar() {
                 width={CONTACT_ICON}
                 height={CONTACT_ICON}
                 unoptimized
-                className="h-14 w-14 object-contain [image-rendering:pixelated]"
+                className="h-12 w-12 object-contain [image-rendering:pixelated]"
               />
             </a>
           </div>
@@ -132,30 +132,30 @@ export default function ProfileBar() {
           University & major — plain text, no DRM.
         </p>
         <div className="flex min-h-0 flex-col gap-1.5">
-          <div className="retro-inset flex flex-col gap-1.5 p-1.5 sm:flex-row sm:items-center">
+          <div className="retro-inset subsection-inset flex flex-col gap-1.5 p-1.5 sm:flex-row sm:items-center">
             <Image
               src="/miami.png"
               alt=""
-              width={64}
-              height={64}
-              className="retro-frame h-14 w-14 shrink-0 object-contain p-1"
+              width={48}
+              height={48}
+              className="retro-frame h-10 w-10 shrink-0 object-contain p-0.5"
             />
-            <ul className="m-0 min-w-0 list-none pl-0 text-[0.82rem] leading-snug sm:text-[0.86rem]">
+            <ul className="m-0 min-w-0 list-none pl-0 text-[0.78rem] leading-snug sm:text-[0.82rem]">
               <li>
                 <strong>University of Miami</strong>
               </li>
               <li>Graduated December 2024</li>
             </ul>
           </div>
-          <div className="retro-inset flex flex-col gap-1.5 p-1.5 sm:flex-row sm:items-center">
+          <div className="retro-inset subsection-inset flex flex-col gap-1.5 p-1.5 sm:flex-row sm:items-center">
             <Image
-              src="/bachelor.png"
+              src="/degree-icon.png"
               alt=""
-              width={64}
-              height={64}
-              className="retro-frame h-14 w-14 shrink-0 object-contain p-1"
+              width={48}
+              height={48}
+              className="retro-frame h-10 w-10 shrink-0 object-contain p-0.5"
             />
-            <ul className="m-0 min-w-0 list-none pl-0 text-[0.82rem] leading-snug sm:text-[0.86rem]">
+            <ul className="m-0 min-w-0 list-none pl-0 text-[0.78rem] leading-snug sm:text-[0.82rem]">
               <li>
                 <strong>B.A. Computer Science</strong>
               </li>
