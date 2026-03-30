@@ -289,7 +289,7 @@ function FlipCard({ project, flipped, onClick, embedded = false }) {
   );
 }
 
-function ProjectRail({ projects, activeId, onSelect, embedded = false }) {
+function ProjectRail({ projects, activeId, onSelect, embedded = false, compact = false }) {
   const navStyle = embedded
     ? {
         width: "100%",
@@ -320,17 +320,23 @@ function ProjectRail({ projects, activeId, onSelect, embedded = false }) {
       </div>
       <ul
         className={
-          embedded
+          embedded && compact
+            ? "m-0 flex list-none p-0 overflow-x-auto overflow-y-hidden"
+            : embedded
             ? "m-0 flex flex-1 flex-col list-none p-0"
             : "m-0 flex min-h-0 flex-1 flex-col list-none p-0"
         }
       >
         {projects.map((p, i) => {
           const isActive = p.id === activeId;
-          const liClass = embedded
+          const liClass = embedded && compact
+            ? `flex min-w-[8.75rem] shrink-0 flex-col ${i > 0 ? "border-l-2 border-dashed border-[color-mix(in_srgb,var(--retro-muted)_50%,transparent)]" : ""}`
+            : embedded
             ? `flex flex-1 flex-col ${i > 0 ? "border-t-2 border-dashed border-[color-mix(in_srgb,var(--retro-muted)_50%,transparent)]" : ""}`
             : `flex min-h-0 flex-1 flex-col ${i > 0 ? "border-t-2 border-dashed border-[color-mix(in_srgb,var(--retro-muted)_50%,transparent)]" : ""}`;
-          const btnClass = embedded
+          const btnClass = embedded && compact
+            ? "flex w-full min-h-[4rem] cursor-pointer items-center gap-1 px-2 py-1.5 text-left font-mono transition-colors"
+            : embedded
             ? "flex w-full flex-1 cursor-pointer items-center gap-1.5 px-2.5 text-left font-mono transition-colors"
             : "flex h-full min-h-0 w-full flex-1 cursor-pointer items-center gap-1.5 px-2.5 py-1.5 text-left font-mono transition-colors";
           return (
@@ -388,11 +394,20 @@ function ProjectRail({ projects, activeId, onSelect, embedded = false }) {
 export default function ProjectShowcase({ embedded = false }) {
   const [activeId, setActiveId] = useState(projects[0].id);
   const [flipped, setFlipped] = useState(false);
+  const [compact, setCompact] = useState(false);
   const flippedRef = useRef(false);
 
   useEffect(() => {
     flippedRef.current = flipped;
   }, [flipped]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 540px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const handleSelect = (id) => {
     if (id === activeId) return;
@@ -411,9 +426,9 @@ export default function ProjectShowcase({ embedded = false }) {
   if (embedded) {
     /** Self-sized box so parent does not need a fixed height (avoids clipping siblings). */
     const embedBox = {
-      minHeight: "clamp(22rem, 52vh, 36rem)",
-      height: "clamp(22rem, 52vh, 36rem)",
-      maxHeight: "min(92vh, 36rem)",
+      minHeight: compact ? "clamp(20rem, 64vh, 25rem)" : "clamp(22rem, 52vh, 36rem)",
+      height: compact ? "clamp(20rem, 64vh, 25rem)" : "clamp(22rem, 52vh, 36rem)",
+      maxHeight: compact ? "min(90vh, 25rem)" : "min(92vh, 36rem)",
     };
 
     return (
@@ -425,8 +440,9 @@ export default function ProjectShowcase({ embedded = false }) {
           className="project-showcase-log-panel min-h-0 flex-1"
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 3fr",
-            gap: "0.5rem",
+            gridTemplateColumns: compact ? "1fr" : "2fr 3fr",
+            gridTemplateRows: compact ? "9.5rem minmax(0,1fr)" : undefined,
+            gap: compact ? "0.375rem" : "0.5rem",
             alignItems: "stretch",
             flex: "1 1 auto",
             minHeight: 0,
@@ -445,7 +461,13 @@ export default function ProjectShowcase({ embedded = false }) {
               overflow: "hidden",
             }}
           >
-            <ProjectRail embedded projects={projects} activeId={activeId} onSelect={handleSelect} />
+            <ProjectRail
+              embedded
+              compact={compact}
+              projects={projects}
+              activeId={activeId}
+              onSelect={handleSelect}
+            />
           </div>
           <div
             className="project-flip-card-wrap"

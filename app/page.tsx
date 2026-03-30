@@ -18,7 +18,7 @@ export default function Home() {
           </header>
         </StaggerItem>
 
-        <div className="my-5 flex min-h-0 w-full min-w-0 flex-1 justify-center overflow-x-hidden overflow-y-auto md:my-7 lg:my-8">
+        <div className="my-2.5 flex min-h-0 w-full min-w-0 flex-1 justify-center overflow-x-hidden overflow-y-auto sm:my-4 md:my-7 lg:my-8">
           <PortfolioBandGrid />
         </div>
       </div>
