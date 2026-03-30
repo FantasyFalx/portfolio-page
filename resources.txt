@@ -1,0 +1,18 @@
+Typescript Basics: 
+General Overview: 
+- https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+Utility types: 
+- https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype
+
+CSS Cheat Sheet: 
+- https://htmlcheatsheet.com/css/
+
+
+How to update node: 
+- https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version#comment1800845_426750
+
+Basic tutorial for Next.js:
+- https://medium.com/@mansour091800/building-a-static-landing-page-with-next-js-af25769ee396
+
+# Color pallete to use for the site: 
+- https://www.color-hex.com/color-palette/45581

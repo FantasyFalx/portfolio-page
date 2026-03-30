@@ -1,0 +1,10 @@
+File for links to other devs portfolios to get ideas: 
+- https://pkramirez.me/ (Dont' like)
+- https://dustinbrett.com/ (Doing too much)
+- https://gianmarcocavallo.com/ (Simplicity is perfect, love the box modular structure of the site) ** 
+- https://heycarl.dev/home (Too Basic)
+- https://jackbailey.dev/ (Solid modular really like it.) **
+- https://bruno-simon.com/ (Way too much. Overkill with an interactive game. )
+- Reddit link: https://www.reddit.com/r/webdev/comments/143acrg/show_me_your_portfolios/
+
+Make it a combination of the two you liked. 

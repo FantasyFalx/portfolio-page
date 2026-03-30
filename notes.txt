@@ -1,0 +1,12 @@
+Notes for what I learned during this process: 
+- If you see <file_name>.tsx, this extension means its a typescript file. 
+
+- Props: 
+- A thing that has to do with react.js, short for PROPERTIES. 
+- Used to pass information from one component to another.  
+- Main purpose of props is to allow a parent component to send data to its 
+child component. 
+- Prop features: 
+    - Cannot be modified by recieving component 
+    - Strictly for reading data and cannot be altered. 
+    - Can be updated when the parents state changes. 

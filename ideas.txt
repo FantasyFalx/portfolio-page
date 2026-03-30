@@ -1,0 +1,2 @@
+Spontaneous ideas for site: 
+- Have the header be a floating pill style. 

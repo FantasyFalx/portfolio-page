@@ -1,0 +1,67 @@
+Steps to build a good portfolio site for a data scientist/ Data Engineer: 
+- Step 1: Determine the site layout. (Done)
+    - ss 1: Look at some dev portoflio pages to get inspired. (Done)
+    - ss 2: Determine what style you want for your portfolio by reviewing porfolio resources. (Done)
+        - https://jackbailey.dev/
+        - https://gianmarcocavallo.com/ 
+    - ss 3: Plan a site structure. (Done)
+        - Draw some pictures to see what would capture peoples attention. 
+            - People read from left to right, and the majority of the people who will be reading my portfolio 
+            will be westerners who speak english. 
+            - Key 1 is that it should have a left to right reading flow about it. 
+            - It should not be a menu style page from which you see at on a restaraunt menu.
+            - Site will be modular simple box style but modern, like the examples shown above. 
+            - It needs to be compact but, not too compact.
+            - It needs to be spread out, but not too spread out. 
+            - Look at some base site layouts. 
+                - https://themeforest.net/item/breezycv-resume-cv-template/26081195
+                - Good reference. 
+                - I will have my image or some likeness of mea on the site with some basic information on the underneath. 
+                - Draw a picture of what you expect it to be. (Done)
+                - Add any animations if need be later. For things to pop. 
+                - Background could be data flowing from point a to point b.
+        
+        - These are the two sites I will use for reference. 
+- Step 2: Determine the color scheme for the site. (Done)
+    - Black with white text. Blue touchings around edges and such. 
+    - This does not have to be the final say but we will use this scheme for now. 
+    - Miami Vice Color Scheme. (done) 
+
+- Step 2.5: Create the site layout with box widgets/components. (Done)
+    - ss 1: Change the background color of the next.js page to white. (Done)
+    - ss 2: Insert a title widget into the main page. (Done)
+        - Step 1: Create a component for header, by making a header.tsx file (Done)- Step 3: Determine what widgets to use for the site
+    - ss 3: Create a profile image component file called profile_image.tsx, where the image will be stored in a modern card file. (Done)
+        - Step 1: Create the basic box structure for the card by making a black box. (Done)
+        - Step 2: Determine where to store image files by reading next.js docs. (done)
+        - Step 3: Move the profile image to the public folder. (Done)
+        - Step 4: Load the profile image into the card base. (Done)
+    - ss 4: Create a contact information component where it list my phone number and email for inquiries. 
+        Step 1: Create a contact_info.tsx component file. (Done)
+        Step 2: Make a black box in the contact information page. (Done)
+    - ss 5: Create a education component that will list my educational accomplishments. (I.E University Attended, and graduation) (Done)
+        Step 1: Create an education.tsx component file. (Done)
+        Step 2: Make a black box in the component. (Done)
+    - ss 6: An about me component for the about me section. (Done)
+        - Step 1: Create an about_me.tsx component file. (Done)
+        - Step 2: Make a black rectangle in the area. (Done)
+    - ss 7: Create an skills and technologies component. (Done)
+        - Step 1: Create a skills_tech.tsx file. (Done)
+        - Step 2: Make a black rectangle in the area. (Done)
+    - ss 8: Create a Projects and experience component. (Done)
+        - Step 1: Create a projects and exp .tsx file. (Done)
+        - Step 2: Create a black rectangle in the area. (Done)
+
+
+- Step 4: Start development of landing page of the site with info and resources gathered from previous steps. 
+    - SS 1: Gather Icons for profile section. (Done)
+    - SS 2: Plan grid design for each section in the about me page section. (Done)
+        - s 1: Quick review of other portfolios to see how they did it. (Done)
+    - SS 3: Input icons for each grid space to see how they render. (Done)
+    - SS 4: Add button functionality to contact me icons. (IP)
+- Step 5: Create texts, descriptions, and gather images and icons for site. 
+- Step 6: Input texts, descriptions, and images into site. 
+- Step 7: Make last modifications on site. 
+- Step 8: Show to sungyeon for approval. 
+- Step 9: Refactor if necessary from suggestions by Sungyeon. 
+- Step 10: Deploy to github pages, and connect it to socials. 

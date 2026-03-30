@@ -1,26 +1,376 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --retro-radius: 4px;
+  --retro-pad-x: 0.5rem;
+  --retro-pad-y: 0.38rem;
+  --retro-inset-pad: 0.38rem 0.48rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Data-engineering canvas: cool slate “terminal / lakehouse” backdrop */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0b1120;
+  color: #f8fafc;
 }
+
+/* Header — overview / brand (sky: clarity, trust, dashboards) */
+.retro-widget[data-theme="amber"] {
+  --retro-bg: #0f172a;
+  --retro-accent: #38bdf8;
+  --retro-muted: #cbd5e1;
+  --retro-meta-bg: color-mix(in srgb, #38bdf8 12%, #0f172a);
+}
+
+/* Profile — identity snapshot (teal: pipelines, freshness) */
+.retro-widget[data-theme="cyan"] {
+  --retro-bg: #0c1924;
+  --retro-accent: #2dd4bf;
+  --retro-muted: #bfe8ee;
+  --retro-meta-bg: color-mix(in srgb, #2dd4bf 13%, #0c1924);
+}
+
+/* Contact — integrations & comms (fuchsia: APIs, handoffs) */
+/* Contact — Docker-inspired: brand blue #2496ED on deep blue-slate */
+.retro-widget[data-theme="coral"] {
+  --retro-bg: #1a2332;
+  --retro-accent: #2496ed;
+  --retro-muted: #cfe6fb;
+  --retro-meta-bg: color-mix(in srgb, #2496ed 13%, #1a2332);
+}
+
+/* Icon-only hits — no button chrome */
+.retro-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem;
+  border-radius: var(--retro-radius);
+  line-height: 0;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.retro-contact-icon:hover {
+  background: color-mix(in srgb, var(--retro-accent) 14%, transparent);
+}
+
+.retro-contact-icon:focus-visible {
+  outline: 2px solid var(--retro-accent);
+  outline-offset: 3px;
+}
+
+.retro-contact-icon:active {
+  transform: scale(0.96);
+}
+
+/* Education — credentials (emerald: quality gates, “pass”) */
+.retro-widget[data-theme="emerald"] {
+  --retro-bg: #0d1f17;
+  --retro-accent: #34d399;
+  --retro-muted: #c5e9d2;
+  --retro-meta-bg: color-mix(in srgb, #34d399 12%, #0d1f17);
+}
+
+/* About — narrative (amber: highlights, annotations) */
+.retro-widget[data-theme="rose"] {
+  --retro-bg: #1a1410;
+  --retro-accent: #fbbf24;
+  --retro-muted: #c9b49a;
+  --retro-meta-bg: color-mix(in srgb, #fbbf24 11%, #1a1410);
+}
+
+/* Skills — stack & tooling (lime: build / runtime) */
+.retro-widget[data-theme="lime"] {
+  --retro-bg: #0f1a0c;
+  --retro-accent: #a3e635;
+  --retro-muted: #c8d9a8;
+  --retro-meta-bg: color-mix(in srgb, #a3e635 12%, #0f1a0c);
+}
+
+/* Projects — shipped work (violet: lineage, orchestration) */
+.retro-widget[data-theme="violet"] {
+  --retro-bg: #15102a;
+  --retro-accent: #a78bfa;
+  --retro-muted: #d6cfe8;
+  --retro-meta-bg: color-mix(in srgb, #a78bfa 12%, #15102a);
+}
+
+.retro-widget {
+  box-sizing: border-box;
+  /* Match header strip for one continuous, lighter surface (easier reading) */
+  background: var(--retro-meta-bg);
+  border: 3px solid var(--retro-accent);
+  border-radius: var(--retro-radius);
+  box-shadow: 4px 4px 0 0 var(--retro-accent);
+  padding: 0;
+  text-align: left;
+}
+
+.retro-widget-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12rem;
+  padding: 0.38rem var(--retro-pad-x) 0.32rem;
+  background: var(--retro-meta-bg);
+  border-bottom: 2px dashed var(--retro-accent);
+}
+
+.retro-widget-label {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--retro-accent);
+  opacity: 1;
+}
+
+.retro-widget-title {
+  font-family: var(--font-press-start), var(--font-jetbrains), ui-monospace,
+    monospace;
+  font-size: clamp(0.62rem, 1.4vw, 0.74rem);
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--retro-accent);
+  margin: 0;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--retro-accent) 35%, transparent);
+}
+
+.retro-widget-subtitle {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: clamp(0.76rem, 1.85vw, 0.92rem);
+  color: color-mix(in srgb, var(--retro-muted) 68%, #ffffff);
+  margin: 0;
+  line-height: 1.4;
+  padding-bottom: 0;
+}
+
+.retro-divider {
+  display: none;
+}
+
+/* Sections inside a single stacked panel (e.g. Profile.bar) */
+.profile-bar-rule {
+  border: none;
+  border-top: 2px dashed var(--retro-accent);
+  margin: 0.28rem 0;
+  width: 100%;
+  opacity: 0.85;
+}
+
+.retro-widget-body {
+  box-sizing: border-box;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  padding: var(--retro-pad-y) var(--retro-pad-x) calc(var(--retro-pad-y) + 0.1rem);
+}
+
+.retro-widget-body p,
+.retro-widget-body li {
+  color: var(--retro-muted);
+}
+
+.retro-widget-body strong,
+.retro-widget-body .retro-text-accent {
+  color: var(--retro-accent);
+}
+
+.retro-inset {
+  box-sizing: border-box;
+  border: 2px dashed var(--retro-accent);
+  border-radius: var(--retro-radius);
+  background: color-mix(in srgb, var(--retro-bg) 82%, #000);
+  padding: var(--retro-inset-pad);
+}
+
+/* Same fill as .retro-widget so nested panels don’t read as a darker slab */
+.retro-inset.retro-inset--surface {
+  background: var(--retro-meta-bg);
+}
+
+/* In-panel subsection titles (Photo · profile, Cloud Skills, …) */
+.retro-toolbar {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: clamp(0.72rem, 2.1vw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--retro-accent) 76%, #ffffff);
+  opacity: 1;
+  margin: 0 0 0.22rem;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--retro-accent) 32%, transparent);
+}
+
+/* Profile.bar + About_Me — slightly larger panel chrome and body copy */
+.retro-widget.profile-bar-widget .retro-widget-body,
+.retro-widget.about-me-widget .retro-widget-body {
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.retro-widget.profile-bar-widget .retro-toolbar,
+.retro-widget.about-me-widget .retro-toolbar {
+  font-size: clamp(0.78rem, 2.2vw, 0.98rem);
+}
+
+.retro-widget.profile-bar-widget .retro-widget-label,
+.retro-widget.about-me-widget .retro-widget-label {
+  font-size: 0.68rem;
+}
+
+.retro-widget.profile-bar-widget .retro-widget-title,
+.retro-widget.about-me-widget .retro-widget-title {
+  font-size: clamp(0.68rem, 1.55vw, 0.82rem);
+}
+
+.retro-widget.profile-bar-widget .retro-widget-subtitle,
+.retro-widget.about-me-widget .retro-widget-subtitle {
+  font-size: clamp(0.82rem, 1.95vw, 0.98rem);
+}
+
+/* Skills.sys — shorter chrome + subsection titles so the panel uses less vertical space */
+.retro-widget.skills-sys-widget .retro-widget-header {
+  gap: 0.08rem;
+  padding: 0.32rem var(--retro-pad-x) 0.28rem;
+}
+
+.retro-widget.skills-sys-widget .retro-widget-title {
+  line-height: 1.2;
+}
+
+.retro-widget.skills-sys-widget .retro-widget-subtitle {
+  font-size: clamp(0.65rem, 1.45vw, 0.78rem);
+  line-height: 1.25;
+}
+
+.retro-widget.skills-sys-widget .retro-toolbar {
+  margin: 0 0 0.12rem;
+  line-height: 1.15;
+  font-size: clamp(0.65rem, 1.75vw, 0.82rem);
+}
+
+/* Projects rail strip title (PROJECTS) — matches subsection emphasis */
+.project-showcase-rail-heading {
+  font-size: clamp(0.68rem, 1.75vw, 0.82rem);
+  letter-spacing: 0.22em;
+}
+
+.retro-pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.45rem;
+  padding: 0.45rem 0.75rem;
+  background: color-mix(in srgb, var(--retro-bg) 70%, #000);
+  border: 3px solid var(--retro-accent);
+  border-radius: var(--retro-radius);
+  color: var(--retro-accent);
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.76rem;
+  text-decoration: none;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+  /* Softer side shadow so buttons don’t visually merge with inset edge */
+  box-shadow: 2px 2px 0 0 color-mix(in srgb, var(--retro-accent) 45%, transparent);
+}
+
+.retro-pixel-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--retro-accent);
+}
+
+.retro-pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--retro-accent);
+}
+
+.retro-pixel-btn img {
+  image-rendering: pixelated;
+}
+
+.retro-frame {
+  box-sizing: border-box;
+  border: 2px solid var(--retro-accent);
+  border-radius: var(--retro-radius);
+  background: color-mix(in srgb, var(--retro-bg) 88%, #000);
+}
+
+/* Holds the circular frame + pixel rim so box-shadow does not overflow the column */
+.profile-photo-pixel-frame-outer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  /* ~22px ring + small buffer; extra bottom/right for offset drop shadow */
+  padding: clamp(1.25rem, 4vw, 1.75rem) clamp(1.35rem, 4.5vw, 1.85rem)
+    clamp(1.4rem, 4.25vw, 1.9rem) clamp(1.25rem, 4vw, 1.75rem);
+}
+
+/* Profile sidebar: circular photo + thick stepped “pixel” rim (uses widget --retro-accent) */
+.profile-photo-pixel-frame {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  /* 4px steps mimic 8-bit border tiles; outer dark bands + accent + drop */
+  box-shadow:
+    0 0 0 2px #030708,
+    0 0 0 6px var(--retro-accent),
+    0 0 0 10px #030708,
+    0 0 0 14px color-mix(in srgb, var(--retro-accent) 75%, #000),
+    0 0 0 18px #020405,
+    0 0 0 22px color-mix(in srgb, var(--retro-accent) 45%, #061016),
+    4px 5px 0 0 color-mix(in srgb, var(--retro-accent) 35%, transparent);
+}
+
+.profile-photo-pixel-frame img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Projects.log: grows with grid row (match Profile.bar height) */
+.projects-log-panel.retro-inset {
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.project-showcase-embed {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Non-embedded / standalone Projects page */
+.project-showcase-split {
+  align-items: stretch;
+}
+
+.project-flip-card {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: min(100%, clamp(14rem, 28vmin, 22rem));
+  aspect-ratio: 1 / 1;
+  height: auto;
+  perspective: 1000px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  isolation: isolate;
+}
+
+/* Embedded: sizing from inline styles; keep perspective */
+.project-flip-card.project-flip-card--embedded {
+  aspect-ratio: unset;
+}
+
